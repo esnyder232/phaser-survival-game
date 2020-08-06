@@ -15,7 +15,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		
 		const compoundBody = Phaser.Physics.Matter.Matter.Body.create( {
 			parts:[playerCollider, playerSensor],
-			frictionAir: 0.35
+			frictionAir: 0.0
 		});
 
 		this.setExistingBody(compoundBody);
@@ -37,29 +37,27 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 	update(timeElapsed, dt) {
 		//this.anims.play('female_idle', true);
 
-		const speed = 2.5;
-		var playerVelocity = new Phaser.Math.Vector2();
+		//side scroller
+		var walkVelocity = new Phaser.Math.Vector2();
+
+		//walk
 		if(this.inputKeys.left.isDown)
 		{
-			playerVelocity.x = -1;
+			walkVelocity.x = -4;
 		}
 		else if (this.inputKeys.right.isDown)
 		{
-			playerVelocity.x = 1;
+			walkVelocity.x = 4;
 		}
 		
+		//jump
 		if (this.inputKeys.up.isDown)
 		{
-			playerVelocity.y = -1;
-		}
-		else if (this.inputKeys.down.isDown)
-		{
-			playerVelocity.y = 1;
+			var jumpForceVector = new Phaser.Math.Vector2(0, -.01);
+			this.applyForce(jumpForceVector);
 		}
 
-		playerVelocity.normalize();
-		playerVelocity.scale(speed);
-		this.setVelocity(playerVelocity.x, playerVelocity.y);
+		this.setVelocityX(walkVelocity.x);
 
 		if(Math.abs(this.velocity.x) > 0.1 || Math.abs(this.velocity.y) > 0.1) {
 			this.anims.play('female_walk', true);
@@ -67,6 +65,41 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
 		else {
 			this.anims.play('female_idle', true);
 		}
+
+
+
+
+		//survival game
+		// const speed = 2.5;
+		// var playerVelocity = new Phaser.Math.Vector2();
+		// if(this.inputKeys.left.isDown)
+		// {
+		// 	playerVelocity.x = -1;
+		// }
+		// else if (this.inputKeys.right.isDown)
+		// {
+		// 	playerVelocity.x = 1;
+		// }
+		
+		// if (this.inputKeys.up.isDown)
+		// {
+		// 	playerVelocity.y += 1;
+		// }
+		// else if (this.inputKeys.down.isDown)
+		// {
+		// 	playerVelocity.y = 1;
+		// }
+
+		// playerVelocity.normalize();
+		// playerVelocity.scale(speed);
+		// this.setVelocity(playerVelocity.x, playerVelocity.y);
+
+		// if(Math.abs(this.velocity.x) > 0.1 || Math.abs(this.velocity.y) > 0.1) {
+		// 	this.anims.play('female_walk', true);
+		// }
+		// else {
+		// 	this.anims.play('female_idle', true);
+		// }
 	}
 
 }

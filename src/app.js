@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import GameManagerScene from './scenes/game-manager-scene.js'
-//import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin'
+import MatterClickScene from './scenes/matter-click-scene.js'
 
 export default class App {
 	constructor() {
@@ -20,22 +20,14 @@ export default class App {
 				default: 'matter',				
 				matter: {
 					debug: true,
-					gravity:{y:0}
+					gravity:{y:1}
 				}
 			}
-			// ,plugin: {
-			// 	scene:[
-			// 		{
-			// 			plugin: PhaserMatterCollisionPlugin,
-			// 			key: 'matterCollision',
-			// 			mapping: 'matterCollision'
-			// 		}
-			// 	]
-			// }
 		}
 
 		this.game = new Phaser.Game(this.config);
 		this.game.scene.add('game-manager-scene', GameManagerScene, true);
+		//this.game.scene.add('matter-click-scene', MatterClickScene, true)
 	}	
 }
 
