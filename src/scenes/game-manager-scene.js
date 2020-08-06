@@ -1,4 +1,4 @@
-import SimpleScene from "./simple-scene.js"
+import MainScene from "./main-scene.js"
 import GlobalFuncs from "../global-funcs.js"
 
 
@@ -11,8 +11,8 @@ export default class GameManagerScene extends Phaser.Scene {
 	  
 	create() {
 		//testing arcade physics
-		this.scene.add('simple-scene', SimpleScene);
-		this.scene.start('simple-scene');
+		this.scene.add('main-scene', MainScene);
+		this.scene.start('main-scene');
 
 
 		window.setTimeout(() => {
