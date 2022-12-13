@@ -22,7 +22,7 @@
   "dependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.0.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "file-loader": "^6.0.0",
     "phaser": "^3.23.0",
     "phaser-matter-collision-plugin": "^0.10.2",
